@@ -26,3 +26,5 @@ Route::get('/films', 'FilmsController@index');
 Route::get('/films/create', 'FilmsController@create')->middleware('auth');
 
 Route::post('/films/add', 'FilmsController@add');
+
+Route::get('/films/{slug}', 'FilmsController@show');

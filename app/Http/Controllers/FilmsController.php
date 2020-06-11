@@ -76,4 +76,11 @@ class FilmsController extends Controller
 
         return redirect('films/create')->with('status', 'Film Saved!');
     }
+
+    public function show($slug) {
+        $film = Films::where('slug', $slug)->first();
+        $comments = $film->comments;
+
+        return view('films.single', compact('film', 'comments'));
+    }
 }
