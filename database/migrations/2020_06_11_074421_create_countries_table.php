@@ -15,7 +15,12 @@ class CreateCountriesTable extends Migration
     {
         Schema::create('countries', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
             $table->timestamps();
+        });
+
+        Schema::table('films', function (Blueprint $table) {
+            $table->foreign('country')->references('id')->on('countries');
         });
     }
 
