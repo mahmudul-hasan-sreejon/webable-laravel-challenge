@@ -21,6 +21,7 @@
                 <li>Rating: {{ $film->rating }}</li>
                 <li>Ticket Price: {{ $film->ticket_price }}</li>
                 <li>Country: {{ $film->countries->name }}</li>
+                <li>Genres: {{ $film->genreList() }}</li>
             </ul>
         </div>
     </div>

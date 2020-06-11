@@ -28,4 +28,17 @@ class Films extends Model
     function countries() {
         return $this->belongsTo('App\Countries', 'id');
     }
+
+    function genres() {
+        return $this->hasMany('App\Genres', 'film');
+    }
+
+    public function genreList() {
+        $genreList = array();
+        foreach($this->genres as $item) {
+            $genreList[] = $item->genre;
+        }
+
+        return join(", ", $genreList);
+    }
 }
