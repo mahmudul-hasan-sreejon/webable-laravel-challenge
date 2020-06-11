@@ -24,3 +24,5 @@ Route::get('/home', function () {
 Route::get('/films', 'FilmsController@index');
 
 Route::get('/films/create', 'FilmsController@create')->middleware('auth');
+
+Route::post('/films/add', 'FilmsController@add');
