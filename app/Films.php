@@ -41,4 +41,8 @@ class Films extends Model
 
         return join(", ", $genreList);
     }
+
+    function comments() {
+        return $this->hasMany('App\Comments', 'film');
+    }
 }

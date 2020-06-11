@@ -9,6 +9,7 @@ use Illuminate\Support\Str;
 use App\Films;
 use App\Countries;
 use App\Genres;
+use App\Comments;
 
 class FilmsController extends Controller
 {
@@ -82,5 +83,19 @@ class FilmsController extends Controller
         $comments = $film->comments;
 
         return view('films.single', compact('film', 'comments'));
+    }
+
+    public function addComment(Request $request) {
+        $request->validate(['comment' => 'required']);
+
+        $user = \Auth::user();
+        $film = Films::find($request->film);
+
+        $comment = new Comments();
+        $comment->user = $user->id;
+        $comment->comment = $request->comment;
+        $film->comments()->save($comment);
+
+        return redirect("films/{$film->slug}")->with('status', 'Comment Added!');
     }
 }

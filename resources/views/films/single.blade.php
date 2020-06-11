@@ -26,4 +26,55 @@
         </div>
     </div>
 
+    @auth
+        <hr>
+        <div class="comments row">
+            <div class="col-md-12">
+                <h1 class="my-4">{{ __("Review this title:") }}</h1>
+                @if(session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
+
+                @if($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form action="/films/add/comment" method="post">
+                    @csrf
+
+                    <div class="form-group">
+                        <textarea class="form-control" name="comment" required></textarea>
+                    </div>
+
+                    <input type="hidden" name="film" value="{{ $film->id }}">
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+
+            @if(!empty($film->comments) && count($film->comments) > 0)
+                <div class="col-md-12">
+                    <h1 class="my-4">{{ __("User reviews") }}</h1>
+
+                    @foreach($film->comments as $comment)
+                        <article>
+                            <?php $user = App\User::find($comment->user); ?>
+                            <strong>-{{ $user->name }} said:</strong>
+                            <p>{{ $comment->comment }}</p>
+                            <hr>
+                        </article>
+                    @endforeach
+                </div>
+            @endif
+        </div>
+    @endauth
+
 @endsection
