@@ -20,3 +20,5 @@ Auth::routes();
 Route::get('/home', function () {
     return redirect("/films");
 })->name('home');
+
+Route::get('/films', 'FilmsController@index');
