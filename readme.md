@@ -21,3 +21,7 @@ php artisan storage:link
 ```
 php artisan serve
 ```
+
+## Author
+
+Created and maintained by Mahmudul Hasan Sreejon ([@mahmudul-hasan-sreejon](https://www.mahmudul-hasan-sreejon.com/)).
